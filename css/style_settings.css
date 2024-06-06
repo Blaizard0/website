@@ -1,0 +1,105 @@
+@media screen and (max-width: 500px) {
+    .manu-option{
+        padding-top: 5px;
+        bottom: 200px;
+        position: flex;
+    }
+}
+@media screen and (min-width: 900px){
+    .manu-option{
+        position: absolute;
+        left: 0px;
+        z-index: 2000;
+    }
+}
+.delete{
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 90%;
+    text-decoration: none;
+}
+#login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.login1-container, .password-container, .email-container, .manu-option {
+    background-color: rgba(138, 131, 131, 0.8); 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.leftMenuS{
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgba(138, 131, 131, 0.8); 
+}
+.leftMenuS a, .leftMenuS .button{
+    margin: 4px;
+    border-radius: 5px;
+}
+.content.hidden{
+    display: none;
+}
+.manu-option .button{
+    color: #ffffff;
+    padding: 15px;
+}
+.manu-option{
+    padding-top: 5px;
+}
+.manu-option .button:hover{
+    background-color: #777;
+}
+#messageContainer {
+    position: fixed;
+    top: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    border-radius: 4px;
+    color: #fff;
+    display: none;
+}
+
+.successContainer {
+    background-color: #4caf50;
+}
+
+.errorContainer {
+    background-color: #f44336;
+}
+
+.hidden {
+    display: none;
+}
+.button_login {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 20px;
+}
+label {
+    color: white;
+    display: block;
+    margin-bottom: 8px;
+}
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+.tooltip {
+    display: none;
+    color: red;
+}
