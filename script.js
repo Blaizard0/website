@@ -20,17 +20,7 @@ function submitForm(formId, url, tekst = "udano", urlHeader = null) {
     };
     xhr.send(formData);
 }
-function zmian() {
-    var user = document.getElementById("users").value;
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "scripts/get_user_data.php?users=" + user, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            document.getElementById("user_data").innerHTML = xhr.responseText;
-        }
-    }
-    xhr.send();
-}
+
 function rejestracjaForm(event) {
     var username = document.getElementById("username").value;
     var password1 = document.getElementById("password1").value;
@@ -152,25 +142,4 @@ function toggleSelect(element){
             password.style.display = 'none';
             email.style.display = 'none';
     }
-}
-function zmian() {
-    var user = document.getElementById("users").value;
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "scripts/get_user_data.php?users=" + user, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            document.getElementById("user_data").innerHTML = xhr.responseText;
-        }
-    }
-    xhr.send();
-}
-function loadImages(page) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'images.php?page=' + page, true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.getElementById('images').innerHTML = xhr.responseText;
-        }
-    };
-    xhr.send();
 }

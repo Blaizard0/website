@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-<?php session_start(); 
+<?php
+session_start(); 
 require_once __DIR__ . "/scripts/config.php";
 ?>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +19,7 @@ require_once __DIR__ . "/scripts/config.php";
             <div class="block">
                 <div class="usImg">
                     <h1 id="nagl">Twoje obrazki</h1>
-                    <p>Klikni na obrazek żeby otworzyć w nowej kartce</p>
+                    <p>Klikni na obrazek żeby otworzyć w nowej картке</p>
                     <?php
                         $conn = mysqli_connect($servername, $userdb, $db_password, $dbname);
 
@@ -26,7 +27,13 @@ require_once __DIR__ . "/scripts/config.php";
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }
-                        $sql = "SELECT files.filename, users.forder FROM files, users WHERE files.user_id = users.id AND users.login LIKE '$username' ORDER BY files.id DESC;";
+
+                        // Пагинация
+                        $limitImg = 20;
+                        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                        $offset = ($page - 1) * $limitImg;
+
+                        $sql = "SELECT files.filename, users.forder FROM files, users WHERE files.user_id = users.id  AND users.login LIKE '$username' ORDER BY files.id DESC LIMIT $limitImg OFFSET $offset;";
                         $result = mysqli_query($conn, $sql);
 
                         if (mysqli_num_rows($result) > 0) {
@@ -44,19 +51,31 @@ require_once __DIR__ . "/scripts/config.php";
                             echo "Nie ma prac";
                         }
                         mysqli_close($conn);
-                        ?>
+                    ?>
                 </div>
             </div>
         </div>
         
     </div>
     <div class="pagination">
-            <button onclick="loadImages(1)">1</button>
-            <button onclick="loadImages(2)">2</button>
-            <button onclick="loadImages(3)">3</button>
-            <button onclick="loadImages(4)">4</button>
-            <button onclick="loadImages(5)">5</button>
-        </div>
+        <?php
+            // Подсчет общего количества изображений для пагинации
+            $conn = mysqli_connect($servername, $userdb, $db_password, $dbname);
+            $sql = "SELECT COUNT(*) as total FROM files, users WHERE files.user_id = users.id AND users.login LIKE '$username'";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $totalImg = $row['total'];
+            $ileStron = ceil($totalImg / $limitImg);
+
+            if ($totalImg > $limitImg) {
+                for ($i = 1; $i <= $ileStron; $i++) {
+                    echo "<a href='?page={$i}'><button>{$i}</button></a>";
+                }
+            }
+
+            mysqli_close($conn);
+        ?>
+    </div>
     <?php
     require_once __DIR__ . "/footer.php";
     ?>
