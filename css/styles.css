@@ -46,6 +46,9 @@ nav a {
     height: 50px;
     width: auto;
 }
+.leftMenu{
+    z-index: 999;
+}
 #button_menu {
     position: fixed;
     top: 0px;
@@ -83,7 +86,7 @@ nav a {
   background-color: #444;
   color: white;
   padding: 16px;
-  font-size: 16px;
+  font-size: 100%;
   border: none;
   cursor: pointer;
 }
@@ -141,7 +144,7 @@ footer{
     color: #fff;
     min-height: 200px;
     position: relative;
-    z-index: 999;
+    z-index: 800;
     bottom: 0px;
     
 }
@@ -166,11 +169,45 @@ svg{
 #nagl, body {
     text-align: center;
 }
-.usImg img {
-    max-width: 100%; 
-    height: 60vh; 
+.deleteIMG, .downloadIMG{
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden;
     margin: 10px;
-    float: left;
+}
+.deleteIMG{
+    background-color: #f44336;
+}
+.downloadIMG{
+    background-color: #4caf50;
+}
+ .usImg img {
+            max-width: 100%; 
+            height: 60vh; 
+            margin: 10px;
+            float: left;
+            border-radius: 3%;
+        }
+
+        /* Media queries */
+@media (max-width: 1200px) {
+        .deleteIMG {
+        max-width: 800px;
+    }
+}
+@media (max-width: 800px) {
+    .deleteIMG {
+        max-width: 500px;
+    }
+}
+@media (max-width: 500px) {
+    .deleteIMG {
+        max-width: 300px;
+    }
 }
 body {
     margin: 0;
@@ -197,12 +234,12 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     margin-top: 10%;
-    margin-bottom: 14%;
+    margin-bottom: 4%;
     align-items: center;
     flex-direction: column; 
     flex-direction: row;
-    padding: 10px;
 }
+
 .block{
     padding: 10px;
     margin: 10px;    
@@ -213,6 +250,17 @@ a{
 }
 .image-container {
     width: 100%; /* Задаємо фіксовану ширину контейнера */
+    max-width: 1920px;
     margin: 2px auto; /* Центруємо контейнер по горизонталі */
     overflow: hidden; /* Забезпечуємо, щоб картинка не виходила за межі контейнера */
+}
+.pagination{
+    margin: 50px;
+}
+.pagination button{
+    background-color: #888;
+    color: white;
+    width: 2%;
+    min-width: 10px;
+    height: 6%;
 }

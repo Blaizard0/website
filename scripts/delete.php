@@ -45,15 +45,16 @@ if (!$conn) {
     die("З'єднання не вдалося: " . mysqli_connect_error());
 }
 
-$username = $_SESSION['username'];
+$username = $_GET["name"];
 $sqlF = "SELECT users.forder FROM users WHERE users.login LIKE '$username'";
+$sqlUF = "DELETE FROM files WHERE user_id = (SELECT id FROM users WHERE login LIKE '$username');";
 $sqlU = "DELETE FROM users WHERE login LIKE '$username';";
 $resultF = mysqli_query($conn, $sqlF);
 
 if ($resultF && mysqli_num_rows($resultF) > 0) {
     while ($row = mysqli_fetch_assoc($resultF)) {
-        $path = 'file/andrii48675690572';
-        echo "Шлях: $path\n"; // Debug message
+        $forderName = $row['forder']; // Отримання імені каталогу з бази даних
+        $path = __DIR__ . "/../file/" . $forderName;
 
         // Перевірка прав доступу
         if (!is_readable($path) || !is_writable($path)) {
@@ -64,12 +65,18 @@ if ($resultF && mysqli_num_rows($resultF) > 0) {
         if (file_exists($path) && is_dir($path)) {
             if (recursiveRemoveDir($path)) {
                 echo "Каталог успішно видалено.\n";
-                $resultU = mysqli_query($conn, $sqlU);
-                if ($resultU) {
-                    echo "Користувача успішно видалено.\n";
-                    require_once __DIR__ . "/logout.php";
+                $resultUF = mysqli_query($conn, $sqlUF);
+                if ($resultUF || mysqli_num_rows($resultUF) == 0) {
+                    echo "файли користувача успішно видалено.\n";
+                    $resultU = mysqli_query($conn, $sqlU);
+                    if ($resultU) {
+                        echo "файли користувача успішно видалено.\n";
+                        require_once __DIR__ . "/logout.php";
+                    } else {
+                        echo "Не вдалося видалити користувача: " . mysqli_error($conn) . "\n";
+                    }
                 } else {
-                    echo "Не вдалося видалити користувача: " . mysqli_error($conn) . "\n";
+                    echo "Не вдалося видалити файли користувача: " . mysqli_error($conn) . "\n";
                 }
             } else {
                 echo "Не вдалося видалити каталог.\n";

@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Ошибка подключения к базе данных: " . mysqli_connect_error());
     }
     if (!empty($username) && !empty($password)) {
-        $sql = "SELECT login, password FROM users WHERE login = ?";
+        $sql = "SELECT login, password, uprawnienia FROM users WHERE login = ?";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $row = mysqli_fetch_assoc($res);
             if ($row && password_verify($password, $row['password'])) {
                 $_SESSION['username'] = $username;
+                $_SESSION['permission']= $row['uprawnienia'];
                 session_regenerate_id();
                 echo 'Zalogowano pomyślnie!';
             } else {

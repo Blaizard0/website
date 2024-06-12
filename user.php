@@ -18,6 +18,7 @@ require_once __DIR__ . "/scripts/config.php";
             <div class="block">
                 <div class="usImg">
                     <h1 id="nagl">Twoje obrazki</h1>
+                    <p>Klikni na obrazek żeby otworzyć w nowej kartce</p>
                     <?php
                         $conn = mysqli_connect($servername, $userdb, $db_password, $dbname);
 
@@ -32,8 +33,12 @@ require_once __DIR__ . "/scripts/config.php";
                             // Выводим каждое изображение
                             while($row = mysqli_fetch_assoc($result)) {
                                 echo '<div class="image-container">
-                                <img src="file/'.$row["forder"].'/' . $row["filename"] . '" alt="Obrazki">
-                                </div>';
+                                        <a href="file/' . $row["forder"] . '/' . $row["filename"] . '" target="_blank" rel="noopener noreferrer">
+                                        <img src="file/' . $row["forder"] . '/' . $row["filename"] . '" alt="Obrazki"></a>
+                                      </div>
+                                      <div class="del">
+                                      <a href="scripts/delete_file.php?filename=' . $row["filename"] . '" class="deleteIMG">Usunąć obraz</a>
+                                      <a href="file/' . $row["forder"] . '/' . $row["filename"] . '" class="downloadIMG" download="'. $row["filename"] . '">Pobrać obraz</a></div>';                            
                             }
                         } else {
                             echo "Nie ma prac";
@@ -45,6 +50,13 @@ require_once __DIR__ . "/scripts/config.php";
         </div>
         
     </div>
+    <div class="pagination">
+            <button onclick="loadImages(1)">1</button>
+            <button onclick="loadImages(2)">2</button>
+            <button onclick="loadImages(3)">3</button>
+            <button onclick="loadImages(4)">4</button>
+            <button onclick="loadImages(5)">5</button>
+        </div>
     <?php
     require_once __DIR__ . "/footer.php";
     ?>

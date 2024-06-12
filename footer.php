@@ -12,4 +12,3 @@
         <h3>Andrii Nesterovets</h3>
     </div>
 </footer>
-<script src="script.js"></script>

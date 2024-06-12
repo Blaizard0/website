@@ -15,7 +15,7 @@
     require_once __DIR__ . "/header.php";
     ?>
     <div id="body">
-        <div class="container">
+        <div class="container ">
             <div class="block">
             <h2>Wgranie pliku</h2>
             <?php

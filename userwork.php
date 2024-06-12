@@ -12,16 +12,15 @@ require_once __DIR__ . "/scripts/config.php";
 </head>
 
 <body>
-    <?php
-    require_once __DIR__ . "/header.php";
-    ?>   
+    <?php require_once __DIR__ . "/header.php"; ?>   
     <div id="body">
         <div class="container">
             <div class="block">
                 <div class="usImg">
                     <h1>Wybież użytkownika</h1>
-                    <form id="usersForm" action="userwork.php" method="post">
-                        <select name="users" id="users">
+                    <form id="usersForm">
+                        <select name="users" id="users" onchange="zmian()">
+                            <option value="">Wybierz użytkownika</option>
                             <?php                         
                                 $conn = mysqli_connect($servername, $userdb, $db_password, $dbname);
 
@@ -36,40 +35,18 @@ require_once __DIR__ . "/scripts/config.php";
                                         echo '<option value="'.$row["login"].'">'.$row["login"].'</option>';
                                     }
                                 } else {
-                                    echo "Niema użytkowników";
+                                    echo '<option value="">Niema użytkowników</option>';
                                 }
+                                mysqli_close($conn);
                             ?>
                         </select>
-                        <button type="submit">Sprawdż</button>
                     </form>
-                    <?php
-                        if (isset($_POST['users'])) {
-                            $user = $_POST['users'];
-                            echo "<h3>Użytkownik $user</h3>";
-                            $sql = 'SELECT files.filename, users.forder FROM files, users WHERE users.login LIKE "'.$user.'" AND users.id = files.user_id ORDER BY files.id DESC;';
-                            $result = mysqli_query($conn, $sql);
-
-                            if (mysqli_num_rows($result) > 0) {
-                                while($row = mysqli_fetch_assoc($result)) {
-                                    echo '<div class="image-container">
-                                        <img src="file/'.$row["forder"].'/' . $row["filename"] . '" alt="Obrazki"><br>
-                                        </div>';
-                                }
-                            } else {
-                                echo "Nie ma prac";
-                            }
-                        }else {
-                            echo "Nic nie wybrano";
-                        }
-                        mysqli_close($conn);
-                        ?>
+                    <div id="user_data">
+                    </div>
                 </div>
             </div>
         </div>
-        
     </div>
-    <?php
-    require_once __DIR__ . "/footer.php";
-    ?>
+    <?php require_once __DIR__ . "/footer.php"; ?>
 </body>
 </html>

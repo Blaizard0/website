@@ -23,7 +23,7 @@
                 <input type="password" id="password" name="password" required><br>
 
                 <button type="button" id="button_login" onclick="submitForm('loginForm','scripts/login.php', 'Zalogowano', 'index.php')">Login</button><br><br>
-                <a href="register.php">Nie masz konta? Zarejestrój</a>
+                <a href="register">Nie masz konta? Zarejestrój</a>
             </form>
         </div>
 

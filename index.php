@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php session_start(); 
+<?php
+session_start();
 require_once __DIR__ . "/scripts/config.php";
 ?>
 <html lang="pl">
@@ -44,11 +45,10 @@ require_once __DIR__ . "/scripts/config.php";
                             echo "Nie ma prac";
                         }
                         mysqli_close($conn);
-                        ?>
+                    ?>
                 </div>
             </div>
         </div>
-        
     </div>
     <?php
     require_once __DIR__ . "/footer.php";

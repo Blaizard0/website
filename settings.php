@@ -33,7 +33,7 @@ require_once __DIR__ . "/scripts/config.php"; ?>
 
                 <button type="button" id="button_login1" class="button_login" onclick="submitForm('loginForm1', 'scripts/settings_job.php', 'Udano')">Login</button>
                 <div class="delete">
-                    <a href="scripts/delete.php" >Usunąć konto</a>
+                <a href="scripts/delete.php?name=<?php echo $username?>" >Usunąć konto</a>
                 </div>
             </form>
         </div>
@@ -46,7 +46,7 @@ require_once __DIR__ . "/scripts/config.php"; ?>
 
                 <button type="button" id="button_login2" class="button_login" onclick="submitForm('loginForm2', 'scripts/settings_job.php', 'Udano')">Login</button>
                 <div class="delete">
-                    <a href="scripts/delete.php" >Usunąć konto</a>
+                <a href="scripts/delete.php?name=<?php echo $username?>" >Usunąć konto</a>
                 </div>
             </form>
         </div>
@@ -60,7 +60,7 @@ require_once __DIR__ . "/scripts/config.php"; ?>
 
                 <button type="button" id="button_login3" class="button_login" onclick="submitForm('loginForm1', 'scripts/settings_job.php', 'Udano')">Login</button><br>
                 <div class="delete">
-                    <a href="scripts/delete.php" >Usunąć konto</a>
+                    <a href="scripts/delete.php?name=<?php echo $username?>" >Usunąć konto</a>
                 </div>        
             </form>
         </div>

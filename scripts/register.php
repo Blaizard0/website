@@ -34,9 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         // Wstawianie danych użytkownika do bazy danych
-        $insertQuery = "INSERT INTO users (login, password, email, forder) VALUES (?, ?, ?, ?)";
+        $insertQuery = "INSERT INTO users (login, password, email, forder, uprawnienia) VALUES (?, ?, ?, ?, ?)";
         $insertStatement = mysqli_prepare($conn, $insertQuery);
-        mysqli_stmt_bind_param($insertStatement, "ssss", $username, $hashedPassword, $hashedEmail,$nameForder);
+        $permission = "user";
+        mysqli_stmt_bind_param($insertStatement, "sssss", $username, $hashedPassword, $hashedEmail,$nameForder,$permission);
         
         if (mysqli_stmt_execute($insertStatement)) {
             echo 'Rejestracja udana.';

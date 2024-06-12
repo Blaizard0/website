@@ -1,0 +1,21 @@
+RewriteEngine On
+
+# Перенаправлення з /login на /login.php
+RewriteRule ^login$ login.php [L]
+
+# Перенаправлення з /register на /register.php
+RewriteRule ^register$ register.php [L]
+
+# Перенаправлення з /user на /user.php
+RewriteRule ^user$ user.php [L]
+
+# Перенаправлення з /userwork на /userwork.php
+RewriteRule ^userwork$ userwork.php [L]
+
+# Перенаправлення з /settings на /settings.php
+RewriteRule ^settings$ settings.php [L]
+
+# Перенаправлення з /upload на /upload.php
+RewriteRule ^upload$ upload.php [L]
+
+RewriteRule ^home$ /website/index.php [L]

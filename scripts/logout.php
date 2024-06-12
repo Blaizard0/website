@@ -5,6 +5,6 @@ session_start();
     session_destroy(); // Знищення сесії
 
     // Перенаправлення на сторінку входу або іншу сторінку, яку ви хочете
-    header('Location: ./../index.php');
+    header('Location: ../home');
     exit();
 ?>
